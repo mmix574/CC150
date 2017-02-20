@@ -10,68 +10,42 @@ struct ListNode {
 class Plus {
 public:
     ListNode* plusAB(ListNode* a, ListNode* b) {
-
-    	int advance = 0;
-    	ListNode * r=NULL;
-    	ListNode * r_tail=NULL;
-		int t_sum;
-    	while(a&&b){
-    		t_sum = a->val+b->val+advance;
-    		if(t_sum>10){
-    			advance = 1;
-    		}else{
-    			advance = 0;
+    	return add(a,b,0);
+    }
+    ListNode* add(ListNode* a,ListNode *b,int ad){
+    	if(a&&!b){
+    		int t = a->val+ad;
+    		a->val = t%10;
+    		if(t>=10){
+    			a->next=add(a->next,NULL,1);
     		}
-    		if(!r){
-    			r = r_tail = (ListNode*)malloc(sizeof(ListNode));
-    			r->val = t_sum%10;
+    		return a;    		
+    	}else if(!a&&b){
+    		int t = b->val+ad;
+    		b->val = t%10;
+    		if(t>=10){
+    			b->next=add(NULL,b->next,1);
+    		}
+    		return b; 
+    	}else if(!a&&!b){
+    		if(ad){
+    			ListNode * r = (ListNode *)malloc(sizeof(ListNode));
+    			r->val = ad;
     			r->next = NULL;
+    			return r;
     		}else{
-    			r_tail->next = (ListNode *)malloc(sizeof(ListNode));
-    			r_tail=r_tail->next;
-    			r_tail->val = t_sum%10; 
-    			r_tail->next = NULL;
+    			return NULL;
     		}
-    		a=a->next;
-    		b=b->next;
+    	}else{
+    		int t = a->val+b->val+ad;
+    		a->val = t%10;
+    		if(t>=10){
+    			a->next=(a->next,b->next,1);
+    		}else{
+    			a->next=(a->next,b->next,0);
+    		}
+    		return a;
     	}
-    	while(a){
-    		t_sum = a->val+advance;
-    		if(t_sum>10){
-    			advance = 1;
-    		}else{
-    			advance = 0;
-    		}
-    		if(!r){
-    			r = r_tail = (ListNode*)malloc(sizeof(ListNode));
-    			r->val = t_sum%10;
-    			r->next = NULL;
-    		}else{
-    			r_tail->next = (ListNode *)malloc(sizeof(ListNode));
-    			r_tail=r_tail->next;
-    			r_tail->val = t_sum%10; 
-    			r_tail->next = NULL;
-    		}
-    	}
-    	while(b){
-    		t_sum = b->val+advance;
-    		if(t_sum>10){
-    			advance = 1;
-    		}else{
-    			advance = 0;
-    		}
-    		if(!r){
-    			r = r_tail = (ListNode*)malloc(sizeof(ListNode));
-    			r->val = t_sum%10;
-    			r->next = NULL;
-    		}else{
-    			r_tail->next = (ListNode *)malloc(sizeof(ListNode));
-    			r_tail=r_tail->next;
-    			r_tail->val = t_sum%10; 
-    			r_tail->next = NULL;
-    		}
-    	}
-    	return r;
     }
 };
 
