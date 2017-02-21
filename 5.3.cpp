@@ -4,19 +4,25 @@
 using namespace std;
 class CloseNumber {
 public:
-	int firstZero(int a){
-		int b = 1;
-		int i=0;
-		while(a>>i){
-
-			i++;
-		}
-		return i;
+	int * intToArray(int n){
+						
 	}
+	int arrayToInt(int A[],int len){
+		int res;
+		for (int i = 0; i < len; ++i)
+		{
+			res = (res<<1);
+			res = res|A[i];
+		}
+		return res;
+	}
+
     vector<int> getCloseNumber(int x) {
 
     }
 };
 int main(){
+	CloseNumber c;
+	c.intToArray();	
 	return 0;
 }
