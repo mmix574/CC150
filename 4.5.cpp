@@ -36,7 +36,7 @@ public:
     	}
     	return true;
     }
-    void inOrderTraverse(*root){
+    void inOrderTraverse(TreeNode* root){
     	if(!root) return ;
     	else{
     		inOrderTraverse(root->left);
