@@ -19,30 +19,41 @@ using namespace std;
 class SetOfStacks {
 public:
     vector<vector<int> > setOfStacks(vector<vector<int> > ope, int size) {
-    	vector<int> stack;
+    	stack<int> s;
     	for (int i = 0; i < ope.size(); ++i)
     	{
     		if(ope[i][0]==1){
-    			stack.push_back(ope[i][1]);
+    			s.push(ope[i][1]);
     		}else{
-    			stack.erase(stack.end());
-    		}
-    	}
-    	vector<vector<int>> r;
-    	for (int i = 0; i < stack.size(); i+=size)
-    	{
-    		vector<int > t;
-    		for (int j = 0; j < size; ++j)
-    		{
-    			if(i+j>=stack.size()){
-    				if(t.size()){r.push_back(t);}
-    				return r;
+    			if(!s.empty()){
+    				s.pop();
     			}
-    			t.push_back(stack[i+j]);
     		}
-    		r.push_back(t);
     	}
-    	return r;
+    	stack<int> ss;
+    	while(!s.empty()){
+    		ss.push(s.top());
+    		s.pop();
+    	}
+
+    	vector<vector<int>> res;
+    	while(!ss.empty()){
+    		vector<int> t;
+    		for (int i = 0; i < size; ++i)
+    		{
+    			if(ss.empty()&&t.size()==0){
+    				return res;
+    			}else if(ss.empty()){
+    				res.push_back(t);
+    				return res;
+    			}else{
+	    			t.push_back(ss.top());
+    				ss.pop();
+    			}
+    		}
+    		res.push_back(t);
+    	}
+    	return res;
     }
 };
 int main(){
