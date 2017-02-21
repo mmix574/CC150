@@ -27,7 +27,7 @@ public:
     	while(!q.empty()){
     		UndirectedGraphNode *p = q.front();q.pop();
     		bool isVisit = false;
-    		for (int i = 0; i < visit.size(); ++i)
+    		for (int i = 0; i < visited.size(); ++i)
     		{
     			if(visited[i]==p){
     				isVisit = true;
