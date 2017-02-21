@@ -19,33 +19,27 @@ public:
     		return false;
     	}
     }
-
     bool AtoB(UndirectedGraphNode *a,UndirectedGraphNode *b){
-    	vector<UndirectedGraphNode *> visited;
-    	queue<UndirectedGraphNode *> q;  	
-    	q.push(a);
-    	while(!q.empty()){
-    		UndirectedGraphNode *p = q.front();q.pop();
-    		bool isVisit = false;
-    		for (int i = 0; i < visited.size(); ++i)
-    		{
-    			if(visited[i]==p){
-    				isVisit = true;
-    				break;
-    			}
-    		}
-    		if(isVisit){
-    			continue;
-    		}else{
-	    		if(p==b){
+    	if(a==b){
+    		return true;
+    	}else{
+    		bool visited[1000]={0};
+    		queue<UndirectedGraphNode *> q;
+    		q.push(a);
+    		while(!q.empty()){
+    			UndirectedGraphNode *cur = q.front();
+    			q.pop();
+    			visited[cur->label]=true;
+    			if(cur==b){
     				return true;
-	    		}else{
-		    		for (int i = 0; i < (p->neighbors).size(); ++i)
-		    		{
-		    			q.push((p->neighbors)[i]);
-		    		}
-	    		}
-
+    			}else{
+    				if(!visited[cur->label]){
+	    				for (int i = 0; i < (cur->neighbors).size(); ++i)
+	    				{
+	    					q.push((cur->neighbors)[i]);
+	    				}
+    				}
+    			}
     		}
     	}
     	return false;
