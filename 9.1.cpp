@@ -4,8 +4,6 @@ using namespace std;
 
 class GoUpstairs {
 public:
-	
-	
     int countWays(int n) {
     	if(n==1){
     		return 1;
