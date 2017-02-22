@@ -19,11 +19,26 @@ public:
     			if(b>0){
 					return calc(a+a,calc(b,1,-1),0);
     			}else{
-    				return calc(a+a,calc(b,1,-1),0)
+    				return -calc(a+a,calc(abs(b),1,-1),0);
     			}
     			break;
     		case 0:
     			// /
+    			int devide = 0;
+    			if(b<0){
+    				while(a>b){
+    					devide++;
+    					a=calc(a,b,-1);
+    				}
+    				return devide;
+    			}else{
+    				b=abs(b);
+    				while(a>b){
+    					devide++;
+    					a=calc(a,b,-1);
+    				}
+    				return -devide;
+    			}
     			break;
 			case -1:
 				// - 
