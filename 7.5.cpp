@@ -11,7 +11,7 @@ struct Point {
         x = xx;
         y = yy;
     }
-};
+}; 
 class Bipartition {
 public:
 	void Border(vector<Point> &A,int *up,int *down,int *left,int *right){
