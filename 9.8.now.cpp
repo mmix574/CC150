@@ -8,7 +8,7 @@ public:
     int countWays(int n) {
     	int res;
     	if(A[n]){
-    		return A[n];
+    		return 0;
     	}else{
     		if(n>=25){
     			res = countWays(n-25)+countWays(n-10)+countWays(n-5)+countWays(n-1);
